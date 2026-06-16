@@ -15,20 +15,11 @@ export const metadata: Metadata = {
     title:       'Lembrei — Assistente Familiar para compromissos, escola e cuidados',
     description: 'Organize compromissos escolares, medicamentos, consultas e tarefas da família em um único aplicativo com notificações automáticas.',
     siteName:    'Lembrei',
-    images: [
-      {
-        url:    '/og-image.png',
-        width:  1200,
-        height: 630,
-        alt:    'Lembrei — Assistente Familiar',
-      },
-    ],
   },
   twitter: {
     card:        'summary_large_image',
     title:       'Lembrei — Assistente Familiar para compromissos, escola e cuidados',
     description: 'Organize compromissos escolares, medicamentos, consultas e tarefas da família em um único aplicativo com notificações automáticas.',
-    images:      ['/og-image.png'],
   },
   robots: {
     index:  true,

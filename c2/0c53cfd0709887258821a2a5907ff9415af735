@@ -1,0 +1,29 @@
+src/components/SiteShell.tsx
+  s_a307ec8b350609::t_0d343089a27a49 1-85
+src/app/page.tsx
+  s_a307ec8b350609::t_9d3c2ad9338e14 1,5-10,15-21,25-31,35-41,46-53,55-71,76-86,91-94,97-98,104,106,110,112,125-128,131-132,143-146,150,159-347,362,366,372,389-390,394,411-412,414,418,421,423,440-441,445,465,469,471,483,486-487,494
+src/app/privacy/page.tsx
+  s_a307ec8b350609::t_8e670f8d8586e5 1-156
+src/app/opengraph-image.tsx
+  s_a307ec8b350609::t_5251e8d893f1be 1-108
+src/app/about/page.tsx
+  s_a307ec8b350609::t_b5320306ecc356 1-113
+src/app/support/page.tsx
+  s_a307ec8b350609::t_6b1d21fe64dfd1 1-108
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "c20c53cfd0709887258821a2a5907ff9415af735",
+  "prompts": {},
+  "sessions": {
+    "s_a307ec8b350609": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "814d6c8d-ee61-413a-84f8-11405613cc8d",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "fambrosio_meli <felipe.ambrosio@mercadolivre.com>"
+    }
+  }
+}

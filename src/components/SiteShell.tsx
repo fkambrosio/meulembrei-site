@@ -46,9 +46,12 @@ export function SiteFooter() {
               <div style={{ width: 30, height: 30, borderRadius: 8, backgroundColor: '#2563EB', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15 }}>🔔</div>
               <span style={{ fontSize: 16, fontWeight: 700, color: 'white' }}>Lembrei</span>
             </a>
-            <p style={{ fontSize: 13, color: '#475569', margin: 0, lineHeight: 1.6 }}>
-              Organize escola, medicamentos<br />e compromissos da família.
+            <p style={{ fontSize: 13, color: '#475569', margin: '0 0 12px', lineHeight: 1.6 }}>
+              Organize compromissos escolares, medicamentos<br />e tarefas da família em um único lugar.
             </p>
+            <span style={{ fontSize: 11, fontWeight: 600, color: '#2563EB', backgroundColor: '#1E293B', borderRadius: 6, padding: '4px 10px' }}>
+              Em evolução contínua
+            </span>
           </div>
           <div style={{ display: 'flex', gap: 48, flexWrap: 'wrap' }}>
             <div>

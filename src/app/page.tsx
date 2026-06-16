@@ -1,4 +1,7 @@
 import { SiteHeader, SiteFooter, APP_URL } from '@/components/SiteShell'
+import { TrackedLink } from '@/components/TrackedLink'
+import { PageViewTracker } from '@/components/PageViewTracker'
+import { Events } from '@/lib/analytics'
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -20,6 +23,7 @@ const positionings = [
     color:    '#EFF6FF',
     border:   '#BFDBFE',
     badge_bg: '#2563EB',
+    ctaEvent: Events.SCHOOL_SECTION_CTA_CLICK,
   },
   {
     badge:    'Prioridade 2',
@@ -30,6 +34,7 @@ const positionings = [
     color:    '#F0FDF4',
     border:   '#BBF7D0',
     badge_bg: '#16A34A',
+    ctaEvent: Events.HEALTH_SECTION_CTA_CLICK,
   },
   {
     badge:    'Prioridade 3',
@@ -40,32 +45,33 @@ const positionings = [
     color:    '#FFF7ED',
     border:   '#FED7AA',
     badge_bg: '#EA580C',
+    ctaEvent: Events.FAMILY_SECTION_CTA_CLICK,
   },
 ]
 
+const forWhom = [
+  { icon: '👨‍👩‍👧‍👦', title: 'Famílias',                        desc: 'Organize compromissos, tarefas e responsabilidades compartilhadas.' },
+  { icon: '🏫',    title: 'Pais com filhos em idade escolar', desc: 'Nunca perca reuniões, eventos, materiais ou comunicados importantes.' },
+  { icon: '👵',    title: 'Pais e avós',                      desc: 'Acompanhe medicamentos, consultas e exames.' },
+  { icon: '🤝',   title: 'Cuidadores',                        desc: 'Compartilhe responsabilidades com familiares e responsáveis.' },
+  { icon: '⛪',   title: 'Igrejas, grupos e comunidades',     desc: 'Organize atividades e compromissos coletivos.' },
+]
+
 const features = [
-  { icon: '🔔', title: 'Lembretes Compartilhados', desc: 'Crie lembretes para você, sua família ou grupos. Todos recebem as notificações.' },
+  { icon: '🔔', title: 'Lembretes Compartilhados', desc: 'Crie lembretes para você, sua família ou grupos. Todos recebem notificações por push e e-mail.' },
   { icon: '📋', title: 'Listas',                   desc: 'Organize compras, materiais escolares e tarefas em listas colaborativas.' },
   { icon: '🔁', title: 'Rotinas',                  desc: 'Atividades recorrentes sem precisar recriar tudo. Configure uma vez, use sempre.' },
-  { icon: '📲', title: 'Notificações',             desc: 'Receba avisos por Push e Email. 24h antes, 3 horas antes e na hora exata.' },
-  { icon: '👥', title: 'Grupos',                   desc: 'Escolas, igrejas, esportes e comunidades. Lembretes coletivos para todos.' },
+  { icon: '📲', title: 'Notificações',             desc: 'Alertas automáticos 24h antes, 3 horas antes e na hora exata — por push e e-mail.' },
+  { icon: '👥', title: 'Grupos',                   desc: 'Escolas, igrejas, esportes e comunidades. Lembretes coletivos para todos os membros.' },
   { icon: '❤️', title: 'Central de Cuidados',      desc: 'Visualize rapidamente tudo que exige atenção da família em um só lugar.' },
 ]
 
 const steps = [
-  { n: '1', title: 'Crie sua conta',             desc: 'Cadastro rápido com Google ou e-mail.' },
+  { n: '1', title: 'Crie sua conta',             desc: 'Cadastro rápido com Google ou e-mail. Sem cartão de crédito.' },
   { n: '2', title: 'Monte sua família',           desc: 'Adicione cônjuge, filhos e dependentes.' },
   { n: '3', title: 'Convide outras pessoas',      desc: 'Compartilhe com quem precisa saber.' },
-  { n: '4', title: 'Cadastre lembretes e listas', desc: 'Organize compromissos e tarefas.' },
-  { n: '5', title: 'Receba notificações',         desc: 'Alertas automáticos no tempo certo.' },
-]
-
-const useCases = [
-  { icon: '👨‍👩‍👧', title: 'Famílias com filhos', desc: 'Controle total de compromissos escolares.' },
-  { icon: '👴',   title: 'Pais e avós',          desc: 'Controle de medicamentos e consultas.' },
-  { icon: '🏥',  title: 'Cuidadores',            desc: 'Acompanhamento compartilhado e organizado.' },
-  { icon: '🏫',  title: 'Escolas',               desc: 'Organização de eventos e comunicados.' },
-  { icon: '⛪',  title: 'Igrejas e grupos',      desc: 'Lembretes coletivos para a comunidade.' },
+  { n: '4', title: 'Cadastre lembretes e listas', desc: 'Organize compromissos e tarefas em um só lugar.' },
+  { n: '5', title: 'Receba notificações',         desc: 'Alertas automáticos no tempo certo, para todos.' },
 ]
 
 // ─── Components ──────────────────────────────────────────────────────────────
@@ -85,7 +91,7 @@ function Hero() {
         <div style={{ maxWidth: 620 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, backgroundColor: '#EFF6FF', borderRadius: 99, padding: '6px 14px', marginBottom: 28 }}>
             <span style={{ fontSize: 14 }}>🎓</span>
-            <span style={{ fontSize: 13, fontWeight: 600, color: '#2563EB' }}>Para famílias com filhos na escola</span>
+            <span style={{ fontSize: 13, fontWeight: 600, color: '#2563EB' }}>Aplicativo para famílias brasileiras</span>
           </div>
 
           <h1 style={{ fontSize: 'clamp(30px, 4.5vw, 50px)', fontWeight: 800, lineHeight: 1.2, color: '#0F172A', margin: '0 0 24px' }}>
@@ -95,22 +101,24 @@ function Hero() {
           </h1>
 
           <p style={{ fontSize: 18, lineHeight: 1.7, color: '#475569', margin: '0 0 36px', maxWidth: 520 }}>
-            Organize compromissos escolares, medicamentos, consultas e tarefas da família em um único lugar, com lembretes compartilhados e notificações automáticas.
+            Organize compromissos escolares, medicamentos, consultas e tarefas em um único lugar, com lembretes compartilhados e notificações automáticas por push e e-mail.
           </p>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-            <a
+            <TrackedLink
+              event={Events.HERO_CREATE_ACCOUNT_CLICK}
               href={`${APP_URL}/register`}
               style={{ display: 'inline-flex', alignItems: 'center', backgroundColor: '#2563EB', color: 'white', textDecoration: 'none', padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 700, boxShadow: '0 4px 14px rgba(37,99,235,0.35)' }}
             >
               Criar conta
-            </a>
-            <a
+            </TrackedLink>
+            <TrackedLink
+              event={Events.HERO_LOGIN_CLICK}
               href={`${APP_URL}/login`}
               style={{ display: 'inline-flex', alignItems: 'center', color: '#374151', textDecoration: 'none', padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 600, border: '1px solid #E2E8F0', backgroundColor: 'white' }}
             >
               Entrar
-            </a>
+            </TrackedLink>
           </div>
         </div>
 
@@ -181,14 +189,11 @@ function Screenshots() {
     <section style={{ padding: '80px 24px', backgroundColor: 'white', overflow: 'hidden' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
-          <p style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.1em', color: '#94A3B8', textTransform: 'uppercase', margin: '0 0 12px' }}>
-            Veja o produto
-          </p>
+          <p style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.1em', color: '#94A3B8', textTransform: 'uppercase', margin: '0 0 12px' }}>Veja o produto</p>
           <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: '#0F172A', margin: 0 }}>
             Simples de usar, poderoso para a família
           </h2>
         </div>
-
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 24, justifyItems: 'center' }}>
           <ScreenCare />
           <ScreenReminder />
@@ -215,10 +220,10 @@ function PhoneFrame({ label, children }: { label: string; children: React.ReactN
 
 function ScreenCare() {
   const items = [
-    { name: 'Pedro',  task: 'Reunião Escolar',   time: 'Hoje 19h',    urgent: true },
-    { name: 'Avó',    task: 'Medicamento',        time: 'Hoje 12h',    urgent: true },
-    { name: 'Ana',    task: 'Dentista',           time: 'Sex 10:30',   urgent: false },
-    { name: 'Pedro',  task: 'Prova de história',  time: 'Qui',         urgent: false },
+    { name: 'Pedro', task: 'Reunião Escolar',  time: 'Hoje 19h',  urgent: true },
+    { name: 'Avó',   task: 'Medicamento',      time: 'Hoje 12h',  urgent: true },
+    { name: 'Ana',   task: 'Dentista',         time: 'Sex 10:30', urgent: false },
+    { name: 'Pedro', task: 'Prova de história',time: 'Qui',       urgent: false },
   ]
   return (
     <PhoneFrame label="Central de Cuidados">
@@ -313,10 +318,10 @@ function ScreenList() {
 
 function ScreenRoutine() {
   const tasks = [
-    { icon: '🏊', text: 'Natação do Pedro',    day: 'Ter / Qui' },
-    { icon: '💊', text: 'Remédio da manhã',    day: 'Todos os dias' },
-    { icon: '🎸', text: 'Aula de violão',      day: 'Sábado' },
-    { icon: '📖', text: 'Revisão para provas', day: 'Dom' },
+    { icon: '🏊', text: 'Natação do Pedro',   day: 'Ter / Qui' },
+    { icon: '💊', text: 'Remédio da manhã',   day: 'Todos os dias' },
+    { icon: '🎸', text: 'Aula de violão',     day: 'Sábado' },
+    { icon: '📖', text: 'Revisão para provas',day: 'Dom' },
   ]
   return (
     <PhoneFrame label="Rotina Familiar">
@@ -367,12 +372,41 @@ function Positionings() {
                   <h3 style={{ fontSize: 22, fontWeight: 800, color: '#0F172A', margin: 0 }}>{p.title}</h3>
                 </div>
                 <p style={{ fontSize: 16, color: '#475569', margin: '0 0 16px', lineHeight: 1.6 }}>{p.desc}</p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 20 }}>
                   {p.items.map((item) => (
                     <span key={item} style={{ fontSize: 13, color: '#374151', backgroundColor: 'white', borderRadius: 8, padding: '4px 12px', fontWeight: 500, boxShadow: '0 1px 2px rgba(0,0,0,0.06)' }}>{item}</span>
                   ))}
                 </div>
+                <TrackedLink
+                  event={p.ctaEvent}
+                  href={`${APP_URL}/register`}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 14, fontWeight: 600, color: p.badge_bg, textDecoration: 'none', padding: '8px 0' }}
+                >
+                  Começar agora →
+                </TrackedLink>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ForWhom() {
+  return (
+    <section style={{ padding: '80px 24px', backgroundColor: 'white' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: 56 }}>
+          <p style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.1em', color: '#94A3B8', textTransform: 'uppercase', margin: '0 0 12px' }}>Casos de uso</p>
+          <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: '#0F172A', margin: 0 }}>Para quem é o Lembrei?</h2>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+          {forWhom.map((u) => (
+            <div key={u.title} style={{ textAlign: 'center', padding: '28px 20px', backgroundColor: '#F8FAFC', borderRadius: 16, border: '1px solid #E2E8F0' }}>
+              <div style={{ fontSize: 40, marginBottom: 12 }}>{u.icon}</div>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: '#0F172A', margin: '0 0 8px', lineHeight: 1.3 }}>{u.title}</h3>
+              <p style={{ fontSize: 13, color: '#64748B', margin: 0, lineHeight: 1.5 }}>{u.desc}</p>
             </div>
           ))}
         </div>
@@ -383,7 +417,7 @@ function Positionings() {
 
 function Features() {
   return (
-    <section style={{ padding: '80px 24px', backgroundColor: 'white' }}>
+    <section style={{ padding: '80px 24px', backgroundColor: '#F8FAFC' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
           <p style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.1em', color: '#94A3B8', textTransform: 'uppercase', margin: '0 0 12px' }}>Recursos</p>
@@ -391,7 +425,7 @@ function Features() {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20 }}>
           {features.map((f) => (
-            <div key={f.title} style={{ backgroundColor: '#F8FAFC', borderRadius: 16, padding: '24px', border: '1px solid #E2E8F0' }}>
+            <div key={f.title} style={{ backgroundColor: 'white', borderRadius: 16, padding: '24px', border: '1px solid #E2E8F0' }}>
               <div style={{ fontSize: 36, marginBottom: 14 }}>{f.icon}</div>
               <h3 style={{ fontSize: 17, fontWeight: 700, color: '#0F172A', margin: '0 0 8px' }}>{f.title}</h3>
               <p style={{ fontSize: 14, color: '#64748B', margin: 0, lineHeight: 1.6 }}>{f.desc}</p>
@@ -405,7 +439,7 @@ function Features() {
 
 function HowItWorks() {
   return (
-    <section style={{ padding: '80px 24px', backgroundColor: '#F8FAFC' }}>
+    <section style={{ padding: '80px 24px', backgroundColor: 'white' }}>
       <div style={{ maxWidth: 720, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
           <p style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.1em', color: '#94A3B8', textTransform: 'uppercase', margin: '0 0 12px' }}>Como funciona</p>
@@ -432,28 +466,6 @@ function HowItWorks() {
   )
 }
 
-function UseCases() {
-  return (
-    <section style={{ padding: '80px 24px', backgroundColor: 'white' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 56 }}>
-          <p style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.1em', color: '#94A3B8', textTransform: 'uppercase', margin: '0 0 12px' }}>Casos de uso</p>
-          <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: '#0F172A', margin: 0 }}>Para quem é o Lembrei?</h2>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
-          {useCases.map((u) => (
-            <div key={u.title} style={{ textAlign: 'center', padding: '28px 20px', backgroundColor: '#F8FAFC', borderRadius: 16, border: '1px solid #E2E8F0' }}>
-              <div style={{ fontSize: 40, marginBottom: 12 }}>{u.icon}</div>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: '#0F172A', margin: '0 0 6px' }}>{u.title}</h3>
-              <p style={{ fontSize: 13, color: '#64748B', margin: 0, lineHeight: 1.5 }}>{u.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function FinalCTA() {
   return (
     <section style={{ padding: '80px 24px', backgroundColor: '#2563EB' }}>
@@ -464,12 +476,13 @@ function FinalCTA() {
         <p style={{ fontSize: 18, color: '#BFDBFE', margin: '0 0 36px', lineHeight: 1.6 }}>
           Mantenha todos informados sobre o que realmente importa.
         </p>
-        <a
+        <TrackedLink
+          event={Events.FOOTER_CREATE_ACCOUNT_CLICK}
           href={`${APP_URL}/register`}
           style={{ display: 'inline-flex', alignItems: 'center', backgroundColor: 'white', color: '#2563EB', textDecoration: 'none', padding: '16px 32px', borderRadius: 12, fontSize: 17, fontWeight: 800, boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }}
         >
           Criar conta
-        </a>
+        </TrackedLink>
       </div>
     </section>
   )
@@ -480,15 +493,16 @@ function FinalCTA() {
 export default function LandingPage() {
   return (
     <>
+      <PageViewTracker />
       <SiteHeader />
       <main>
         <Hero />
         <SocialProof />
         <Screenshots />
         <Positionings />
+        <ForWhom />
         <Features />
         <HowItWorks />
-        <UseCases />
         <FinalCTA />
       </main>
       <SiteFooter />

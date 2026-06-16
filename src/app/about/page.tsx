@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import { SiteHeader, SiteFooter, APP_URL } from '@/components/SiteShell'
+import { SiteHeader, SiteFooter } from '@/components/SiteShell'
 
 export const metadata: Metadata = {
   title: 'Sobre — Lembrei',
-  description: 'Como nasceu o Lembrei, o que resolve e para quem foi criado.',
+  description: 'Como nasceu o Lembrei, o que resolve e para quem foi criado. Aplicativo de organização familiar para compromissos escolares, medicamentos e tarefas.',
   alternates: { canonical: 'https://meulembrei.com.br/about' },
 }
 
@@ -37,15 +37,15 @@ export default function AboutPage() {
         <div style={{ padding: '64px 24px', backgroundColor: 'white' }}>
           <div style={{ maxWidth: 720, margin: '0 auto' }}>
 
-            <Section title="Como tudo começou">
+            <Section title="Como nasceu o Lembrei">
               <P>
-                Um dia, um pai perdeu a reunião escolar do filho. Não por falta de comprometimento — mas porque o aviso veio na agenda de papel, o lembrete ficou num grupo de WhatsApp que ninguém viu a tempo, e a data se misturou com outras 40 coisas que precisavam de atenção naquela semana.
+                O Lembrei nasceu de uma necessidade simples: ajudar famílias a organizarem compromissos importantes sem depender da memória de uma única pessoa.
               </P>
               <P>
-                O problema não era esse pai. Era a ausência de um lugar único onde a família conseguisse centralizar compromissos, compartilhar responsabilidades e receber lembretes automáticos antes de ser tarde demais.
+                Entre reuniões escolares, medicamentos, consultas, tarefas e compromissos do dia a dia, percebemos que muitas responsabilidades acabam concentradas em uma única pessoa da família.
               </P>
               <P>
-                O Lembrei foi criado para resolver exatamente isso.
+                O Lembrei foi criado para compartilhar essas responsabilidades e ajudar todos a se manterem informados sobre o que realmente importa.
               </P>
             </Section>
 
@@ -54,7 +54,7 @@ export default function AboutPage() {
                 Famílias com filhos vivem sobrecarregadas de informação. Escola, saúde, compromissos pessoais, tarefas domésticas — tudo ao mesmo tempo, espalhado entre WhatsApp, agendas de papel, aplicativos de notas e a memória de cada um.
               </P>
               <P>
-                O Lembrei centraliza isso em um único lugar. Você cria um lembrete, define quem precisa saber, e todos os responsáveis recebem as notificações — por push e por e-mail — antes do compromisso acontecer.
+                O Lembrei centraliza isso em um único lugar. Você cria um lembrete, define quem precisa saber, e todos os responsáveis recebem notificações automáticas por push e e-mail antes do compromisso acontecer.
               </P>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, margin: '24px 0' }}>
                 {[
@@ -86,6 +86,15 @@ export default function AboutPage() {
               </P>
               <P>
                 Simples. Rápido. Confiável. Para quem precisa que as coisas funcionem — sem manuais, sem tutoriais, sem frustração.
+              </P>
+            </Section>
+
+            <Section title="Em evolução contínua">
+              <P>
+                O Lembrei está em constante evolução. Novas funcionalidades são adicionadas regularmente com base no uso real das famílias que utilizam a plataforma.
+              </P>
+              <P>
+                Cada atualização parte de um problema real — relatado por usuários, identificado no uso diário ou percebido em situações que a versão anterior não cobria bem.
               </P>
             </Section>
 

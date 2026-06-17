@@ -1,3 +1,5 @@
+import { existsSync } from 'fs'
+import { join } from 'path'
 import { SiteHeader, SiteFooter, APP_URL } from '@/components/SiteShell'
 import { TrackedLink } from '@/components/TrackedLink'
 import { PageViewTracker } from '@/components/PageViewTracker'
@@ -74,20 +76,35 @@ const steps = [
   { n: '5', title: 'Receba notificações',         desc: 'Alertas automáticos no tempo certo, para todos.' },
 ]
 
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+function screenshotSrc(filename: string): string | null {
+  try {
+    return existsSync(join(process.cwd(), 'public', 'screenshots', filename))
+      ? `/screenshots/${filename}`
+      : null
+  } catch {
+    return null
+  }
+}
+
 // ─── Components ──────────────────────────────────────────────────────────────
 
 function Hero() {
   return (
     <section style={{ backgroundColor: 'white', borderBottom: '1px solid #E2E8F0' }}>
-      <div style={{
-        maxWidth:            1200,
-        margin:              '0 auto',
-        padding:             '80px 24px',
-        display:             'grid',
-        gridTemplateColumns: 'minmax(0,1fr) auto',
-        gap:                 64,
-        alignItems:          'center',
-      }}>
+      <div
+        className="hero-grid"
+        style={{
+          maxWidth:            1200,
+          margin:              '0 auto',
+          padding:             '56px 24px',
+          display:             'grid',
+          gridTemplateColumns: 'minmax(0,1fr) auto',
+          gap:                 64,
+          alignItems:          'center',
+        }}
+      >
         <div style={{ maxWidth: 620 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, backgroundColor: '#EFF6FF', borderRadius: 99, padding: '6px 14px', marginBottom: 28 }}>
             <span style={{ fontSize: 14 }}>🎓</span>
@@ -104,7 +121,7 @@ function Hero() {
             Organize compromissos escolares, medicamentos, consultas e tarefas em um único lugar, com lembretes compartilhados e notificações automáticas por push e e-mail.
           </p>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center' }}>
             <TrackedLink
               event={Events.HERO_CREATE_ACCOUNT_CLICK}
               href={`${APP_URL}/register`}
@@ -115,14 +132,16 @@ function Hero() {
             <TrackedLink
               event={Events.HERO_LOGIN_CLICK}
               href={`${APP_URL}/login`}
-              style={{ display: 'inline-flex', alignItems: 'center', color: '#374151', textDecoration: 'none', padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 600, border: '1px solid #E2E8F0', backgroundColor: 'white' }}
+              style={{ display: 'inline-flex', alignItems: 'center', color: '#64748B', textDecoration: 'none', padding: '14px 8px', fontSize: 15, fontWeight: 500 }}
             >
               Entrar
             </TrackedLink>
           </div>
         </div>
 
-        <PhoneMockup />
+        <div className="hero-mockup">
+          <PhoneMockup />
+        </div>
       </div>
     </section>
   )
@@ -137,8 +156,8 @@ function PhoneMockup() {
   ]
   return (
     <div style={{ flexShrink: 0 }}>
-      <div style={{ width: 300, backgroundColor: '#0F172A', borderRadius: 40, padding: '12px 8px', boxShadow: '0 25px 60px rgba(0,0,0,0.25)' }}>
-        <div style={{ backgroundColor: '#F8FAFC', borderRadius: 32, overflow: 'hidden', padding: '20px 16px' }}>
+      <div style={{ width: 270, backgroundColor: '#0F172A', borderRadius: 36, padding: '12px 8px', boxShadow: '0 25px 60px rgba(0,0,0,0.25)' }}>
+        <div style={{ backgroundColor: '#F8FAFC', borderRadius: 28, overflow: 'hidden', padding: '20px 16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
             <img src="/icon.png" width={32} height={32} alt="Lembrei" style={{ borderRadius: 9 }} />
             <div>
@@ -205,12 +224,15 @@ function Screenshots() {
   )
 }
 
-function PhoneFrame({ label, children }: { label: string; children: React.ReactNode }) {
+function PhoneFrame({ label, src, children }: { label: string; src?: string | null; children?: React.ReactNode }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
       <div style={{ width: 240, backgroundColor: '#0F172A', borderRadius: 36, padding: '10px 6px', boxShadow: '0 16px 48px rgba(0,0,0,0.2)' }}>
         <div style={{ backgroundColor: '#F8FAFC', borderRadius: 28, overflow: 'hidden', minHeight: 420 }}>
-          {children}
+          {src
+            /* eslint-disable-next-line @next/next/no-img-element */
+            ? <img src={src} alt={label} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            : children}
         </div>
       </div>
       <p style={{ fontSize: 13, fontWeight: 600, color: '#64748B', margin: 0, textAlign: 'center' }}>{label}</p>
@@ -219,6 +241,7 @@ function PhoneFrame({ label, children }: { label: string; children: React.ReactN
 }
 
 function ScreenCare() {
+  const src = screenshotSrc('central-cuidados.png')
   const items = [
     { name: 'Pedro', task: 'Reunião Escolar',  time: 'Hoje 19h',  urgent: true },
     { name: 'Avó',   task: 'Medicamento',      time: 'Hoje 12h',  urgent: true },
@@ -226,7 +249,7 @@ function ScreenCare() {
     { name: 'Pedro', task: 'Prova de história',time: 'Qui',       urgent: false },
   ]
   return (
-    <PhoneFrame label="Central de Cuidados">
+    <PhoneFrame label="Central de Cuidados" src={src}>
       <div style={{ padding: '16px 12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
           <img src="/icon.png" width={28} height={28} alt="Lembrei" style={{ borderRadius: 8 }} />
@@ -254,8 +277,9 @@ function ScreenCare() {
 }
 
 function ScreenReminder() {
+  const src = screenshotSrc('lembrete-escolar.png')
   return (
-    <PhoneFrame label="Lembrete Escolar">
+    <PhoneFrame label="Lembrete Escolar" src={src}>
       <div style={{ padding: '16px 12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
           <img src="/icon.png" width={28} height={28} alt="Lembrei" style={{ borderRadius: 8 }} />
@@ -282,6 +306,7 @@ function ScreenReminder() {
 }
 
 function ScreenList() {
+  const src = screenshotSrc('lista-compartilhada.png')
   const items = [
     { text: 'Caderno de desenho A4', done: true },
     { text: 'Cola bastão',           done: true },
@@ -291,7 +316,7 @@ function ScreenList() {
     { text: 'Borracha',              done: false },
   ]
   return (
-    <PhoneFrame label="Lista Compartilhada">
+    <PhoneFrame label="Lista Compartilhada" src={src}>
       <div style={{ padding: '16px 12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
           <img src="/icon.png" width={28} height={28} alt="Lembrei" style={{ borderRadius: 8 }} />
@@ -317,6 +342,7 @@ function ScreenList() {
 }
 
 function ScreenRoutine() {
+  const src = screenshotSrc('rotina-familiar.png')
   const tasks = [
     { icon: '🏊', text: 'Natação do Pedro',   day: 'Ter / Qui' },
     { icon: '💊', text: 'Remédio da manhã',   day: 'Todos os dias' },
@@ -324,7 +350,7 @@ function ScreenRoutine() {
     { icon: '📖', text: 'Revisão para provas',day: 'Dom' },
   ]
   return (
-    <PhoneFrame label="Rotina Familiar">
+    <PhoneFrame label="Rotina Familiar" src={src}>
       <div style={{ padding: '16px 12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
           <img src="/icon.png" width={28} height={28} alt="Lembrei" style={{ borderRadius: 8 }} />
@@ -402,13 +428,26 @@ function ForWhom() {
           <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: '#0F172A', margin: 0 }}>Para quem é o Lembrei?</h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
-          {forWhom.map((u) => (
-            <div key={u.title} style={{ textAlign: 'center', padding: '28px 20px', backgroundColor: '#F8FAFC', borderRadius: 16, border: '1px solid #E2E8F0' }}>
-              <div style={{ fontSize: 40, marginBottom: 12 }}>{u.icon}</div>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: '#0F172A', margin: '0 0 8px', lineHeight: 1.3 }}>{u.title}</h3>
-              <p style={{ fontSize: 13, color: '#64748B', margin: 0, lineHeight: 1.5 }}>{u.desc}</p>
-            </div>
-          ))}
+          {forWhom.map((u, i) => {
+            const isLast = i === forWhom.length - 1
+            return (
+              <div
+                key={u.title}
+                style={{
+                  textAlign: 'center',
+                  padding: '28px 20px',
+                  backgroundColor: '#F8FAFC',
+                  borderRadius: 16,
+                  border: '1px solid #E2E8F0',
+                  opacity: isLast ? 0.6 : 1,
+                }}
+              >
+                <div style={{ fontSize: isLast ? 32 : 40, marginBottom: 12 }}>{u.icon}</div>
+                <h3 style={{ fontSize: isLast ? 14 : 15, fontWeight: 700, color: '#0F172A', margin: '0 0 8px', lineHeight: 1.3 }}>{u.title}</h3>
+                <p style={{ fontSize: 13, color: '#64748B', margin: 0, lineHeight: 1.5 }}>{u.desc}</p>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -471,10 +510,10 @@ function FinalCTA() {
     <section style={{ padding: '80px 24px', backgroundColor: '#2563EB' }}>
       <div style={{ maxWidth: 640, margin: '0 auto', textAlign: 'center' }}>
         <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: 'white', margin: '0 0 16px', lineHeight: 1.2 }}>
-          Organize os cuidados da sua família.
+          Não dependa da memória para cuidar do que importa.
         </h2>
         <p style={{ fontSize: 18, color: '#BFDBFE', margin: '0 0 36px', lineHeight: 1.6 }}>
-          Mantenha todos informados sobre o que realmente importa.
+          Escola, medicamentos, consultas e compromissos organizados em um único lugar.
         </p>
         <TrackedLink
           event={Events.FOOTER_CREATE_ACCOUNT_CLICK}
@@ -493,6 +532,12 @@ function FinalCTA() {
 export default function LandingPage() {
   return (
     <>
+      <style>{`
+        @media (max-width: 768px) {
+          .hero-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
+          .hero-mockup { display: none !important; }
+        }
+      `}</style>
       <PageViewTracker />
       <SiteHeader />
       <main>

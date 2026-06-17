@@ -18,7 +18,7 @@ export function SiteHeader() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <a
             href={`${APP_URL}/login`}
-            style={{ fontSize: 14, fontWeight: 600, color: '#2563EB', textDecoration: 'none', padding: '8px 16px', borderRadius: 8, border: '1px solid #BFDBFE', backgroundColor: 'white' }}
+            style={{ fontSize: 14, fontWeight: 500, color: '#64748B', textDecoration: 'none', padding: '8px 12px' }}
           >
             Entrar
           </a>

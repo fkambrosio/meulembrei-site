@@ -12,9 +12,7 @@ export function SiteHeader() {
     }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64 }}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-          <div style={{ width: 36, height: 36, borderRadius: 10, backgroundColor: '#2563EB', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>
-            🔔
-          </div>
+          <img src="/icon.png" width={36} height={36} alt="Lembrei" style={{ borderRadius: 10 }} />
           <span style={{ fontSize: 18, fontWeight: 700, color: '#0F172A' }}>Lembrei</span>
         </a>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -43,7 +41,7 @@ export function SiteFooter() {
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: 40, marginBottom: 40 }}>
           <div>
             <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', marginBottom: 12 }}>
-              <div style={{ width: 30, height: 30, borderRadius: 8, backgroundColor: '#2563EB', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15 }}>🔔</div>
+              <img src="/icon.png" width={30} height={30} alt="Lembrei" style={{ borderRadius: 8 }} />
               <span style={{ fontSize: 16, fontWeight: 700, color: 'white' }}>Lembrei</span>
             </a>
             <p style={{ fontSize: 13, color: '#475569', margin: '0 0 12px', lineHeight: 1.6 }}>

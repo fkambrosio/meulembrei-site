@@ -140,7 +140,7 @@ function PhoneMockup() {
       <div style={{ width: 300, backgroundColor: '#0F172A', borderRadius: 40, padding: '12px 8px', boxShadow: '0 25px 60px rgba(0,0,0,0.25)' }}>
         <div style={{ backgroundColor: '#F8FAFC', borderRadius: 32, overflow: 'hidden', padding: '20px 16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
-            <div style={{ width: 32, height: 32, borderRadius: 9, backgroundColor: '#2563EB', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>🔔</div>
+            <img src="/icon.png" width={32} height={32} alt="Lembrei" style={{ borderRadius: 9 }} />
             <div>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#0F172A' }}>Lembrei</div>
               <div style={{ fontSize: 11, color: '#64748B' }}>Hoje, segunda-feira</div>
@@ -229,7 +229,7 @@ function ScreenCare() {
     <PhoneFrame label="Central de Cuidados">
       <div style={{ padding: '16px 12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-          <div style={{ width: 28, height: 28, borderRadius: 8, backgroundColor: '#2563EB', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14 }}>🔔</div>
+          <img src="/icon.png" width={28} height={28} alt="Lembrei" style={{ borderRadius: 8 }} />
           <span style={{ fontSize: 13, fontWeight: 700, color: '#0F172A' }}>Lembrei</span>
         </div>
         <p style={{ fontSize: 12, fontWeight: 700, color: '#0F172A', margin: '0 0 10px' }}>❤️ Central de Cuidados</p>
@@ -258,7 +258,7 @@ function ScreenReminder() {
     <PhoneFrame label="Lembrete Escolar">
       <div style={{ padding: '16px 12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-          <div style={{ width: 28, height: 28, borderRadius: 8, backgroundColor: '#2563EB', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14 }}>🔔</div>
+          <img src="/icon.png" width={28} height={28} alt="Lembrei" style={{ borderRadius: 8 }} />
           <span style={{ fontSize: 13, fontWeight: 700, color: '#0F172A' }}>Lembrei</span>
         </div>
         <div style={{ backgroundColor: '#EFF6FF', borderRadius: 12, padding: '16px', marginBottom: 12 }}>
@@ -294,7 +294,7 @@ function ScreenList() {
     <PhoneFrame label="Lista Compartilhada">
       <div style={{ padding: '16px 12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-          <div style={{ width: 28, height: 28, borderRadius: 8, backgroundColor: '#2563EB', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14 }}>🔔</div>
+          <img src="/icon.png" width={28} height={28} alt="Lembrei" style={{ borderRadius: 8 }} />
           <span style={{ fontSize: 13, fontWeight: 700, color: '#0F172A' }}>Lembrei</span>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
@@ -327,7 +327,7 @@ function ScreenRoutine() {
     <PhoneFrame label="Rotina Familiar">
       <div style={{ padding: '16px 12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-          <div style={{ width: 28, height: 28, borderRadius: 8, backgroundColor: '#2563EB', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14 }}>🔔</div>
+          <img src="/icon.png" width={28} height={28} alt="Lembrei" style={{ borderRadius: 8 }} />
           <span style={{ fontSize: 13, fontWeight: 700, color: '#0F172A' }}>Lembrei</span>
         </div>
         <p style={{ fontSize: 13, fontWeight: 700, color: '#0F172A', margin: '0 0 12px' }}>🔁 Rotina da Família</p>

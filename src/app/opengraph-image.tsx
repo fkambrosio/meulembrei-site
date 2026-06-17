@@ -53,13 +53,11 @@ export default async function Image() {
             width:           72,
             height:          72,
             borderRadius:    20,
-            backgroundColor: '#2563EB',
+            overflow:        'hidden',
             display:         'flex',
-            alignItems:      'center',
-            justifyContent:  'center',
-            fontSize:         40,
           }}>
-            🔔
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="https://meulembrei.com.br/icon.png" width={72} height={72} alt="Lembrei" />
           </div>
           <span style={{ fontSize: 52, fontWeight: 800, color: 'white' }}>Lembrei</span>
         </div>

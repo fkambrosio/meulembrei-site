@@ -1,0 +1,19 @@
+src/app/privacy/page.tsx
+  s_a307ec8b350609::t_5e1e719852e547 19-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "eedf2edb97f6f643ae21a650938faa91ddc4212f",
+  "prompts": {},
+  "sessions": {
+    "s_a307ec8b350609": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "814d6c8d-ee61-413a-84f8-11405613cc8d",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "fambrosio_meli <felipe.ambrosio@mercadolivre.com>"
+    }
+  }
+}

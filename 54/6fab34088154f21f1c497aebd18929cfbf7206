@@ -1,0 +1,25 @@
+src/app/page.tsx
+  s_a307ec8b350609::t_166c73778741a3 232,261,297,330
+  s_a307ec8b350609::t_129782ca0d55a8 143
+src/app/opengraph-image.tsx
+  s_a307ec8b350609::t_cfc5f5f074965a 56,59-60
+src/components/SiteShell.tsx
+  s_a307ec8b350609::t_7bee442d2de02d 44
+  s_a307ec8b350609::t_c521ef7a7eeb29 15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "546fab34088154f21f1c497aebd18929cfbf7206",
+  "prompts": {},
+  "sessions": {
+    "s_a307ec8b350609": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "814d6c8d-ee61-413a-84f8-11405613cc8d",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "fambrosio_meli <felipe.ambrosio@mercadolivre.com>"
+    }
+  }
+}

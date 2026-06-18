@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
+import { ReferralCapture } from '@/components/ReferralCapture'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -31,6 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR">
       <body style={{ margin: 0, fontFamily: 'Inter, system-ui, sans-serif', backgroundColor: '#F8FAFC' }}>
+        <Suspense fallback={null}><ReferralCapture /></Suspense>
         {children}
       </body>
     </html>

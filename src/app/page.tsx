@@ -3,6 +3,7 @@ import { join } from 'path'
 import { SiteHeader, SiteFooter, APP_URL } from '@/components/SiteShell'
 import { TrackedLink } from '@/components/TrackedLink'
 import { PageViewTracker } from '@/components/PageViewTracker'
+import { InviteBanner } from '@/components/InviteBanner'
 import { Events } from '@/lib/analytics'
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -539,6 +540,7 @@ export default function LandingPage() {
         }
       `}</style>
       <PageViewTracker />
+      <InviteBanner />
       <SiteHeader />
       <main>
         <Hero />

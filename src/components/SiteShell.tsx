@@ -69,9 +69,20 @@ export function SiteFooter() {
             </div>
             <div>
               <p style={{ fontSize: 12, fontWeight: 700, color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 12px' }}>Contato</p>
-              <a href="mailto:contato@meulembrei.com.br" style={{ fontSize: 14, color: '#94A3B8', textDecoration: 'none' }}>
-                contato@meulembrei.com.br
-              </a>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <a href="mailto:contato@meulembrei.com.br" style={{ fontSize: 14, color: '#94A3B8', textDecoration: 'none' }}>
+                  contato@meulembrei.com.br
+                </a>
+                <a href="https://www.instagram.com/meulembrei/" target="_blank" rel="noopener noreferrer"
+                  style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, color: '#94A3B8', textDecoration: 'none' }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                  </svg>
+                  @meulembrei
+                </a>
+              </div>
             </div>
           </div>
         </div>

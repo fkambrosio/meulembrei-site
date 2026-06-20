@@ -25,8 +25,14 @@ type Props = {
 }
 
 export function TrackedLink({ href, event, style, children }: Props) {
+  function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault()
+    trackEvent(event)
+    window.location.href = buildHref(href)
+  }
+
   return (
-    <a href={buildHref(href)} style={style} onClick={() => trackEvent(event)}>
+    <a href={href} style={style} onClick={handleClick}>
       {children}
     </a>
   )

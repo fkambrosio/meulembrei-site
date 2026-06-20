@@ -1,3 +1,5 @@
+import { HeaderNavLinks } from './HeaderNavLinks'
+
 export const APP_URL = 'https://app.meulembrei.com.br'
 
 export function SiteHeader() {
@@ -15,20 +17,7 @@ export function SiteHeader() {
           <img src="/icon.png" width={36} height={36} alt="Lembrei" style={{ borderRadius: 10 }} />
           <span style={{ fontSize: 18, fontWeight: 700, color: '#0F172A' }}>Lembrei</span>
         </a>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <a
-            href={`${APP_URL}/login`}
-            style={{ fontSize: 14, fontWeight: 500, color: '#64748B', textDecoration: 'none', padding: '8px 12px' }}
-          >
-            Entrar
-          </a>
-          <a
-            href={`${APP_URL}/register`}
-            style={{ fontSize: 14, fontWeight: 600, color: 'white', textDecoration: 'none', padding: '8px 16px', borderRadius: 8, backgroundColor: '#2563EB' }}
-          >
-            Criar conta
-          </a>
-        </div>
+        <HeaderNavLinks />
       </div>
     </header>
   )
